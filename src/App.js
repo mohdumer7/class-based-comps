@@ -1,6 +1,6 @@
 import React from "react";
 import MovieCard from "./MovieCard";
-
+import "./index.css";
 class App extends React.Component {
   render() {
     return (
