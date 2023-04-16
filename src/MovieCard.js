@@ -1,6 +1,28 @@
 import React from "react";
 
 class MovieCard extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      title: "The Avengers",
+      plot: "Earths mightiest heroes must come together and learn to fight as a team if they are going to stop the mischievous Loki and him alien army from enslaving humanity",
+      price: 199,
+      rating: 8.9,
+      stars: 0,
+    };
+  }
+  //this.props is available everytwhere
+  increaseStars() {
+    this.setState({ stars: this.state.stars + 1 });
+  }
+
+  decreaseStars() {
+    if (this.state.stars <= 0) {
+      return;
+    }
+    this.setState({ stars: this.state.stars - 1 });
+  }
+
   render() {
     return (
       <div className="main">
@@ -17,17 +39,13 @@ class MovieCard extends React.Component {
           {/**Right section Movie Card */}
           <div className="right">
             {/**Title, plot, price of the movie */}
-            <div className="title">The Avengers</div>
-            <div className="plot">
-              Earth's mightiest heroes must come together and learn to fight as
-              a team if they are going to stop the mischievous Loki and his
-              alien army from enslaving humanity.
-            </div>
-            <div className="price">Rs. 199</div>
+            <div className="title">{this.state.title}</div>
+            <div className="plot">{this.state.plot}</div>
+            <div className="price">Rs. {this.state.price}</div>
 
             {/**Footer starts here with ratings, stars and buttons */}
             <div className="footer">
-              <div className="rating">8.5</div>
+              <div className="rating">{this.state.rating}</div>
 
               {/**Star image with increase and decrease buttons and star count */}
               <div className="star-dis">
@@ -35,6 +53,7 @@ class MovieCard extends React.Component {
                   className="str-btn"
                   alt="Decrease"
                   src="https://cdn-icons-png.flaticon.com/128/2801/2801932.png"
+                  onClick={this.decreaseStars.bind(this)}
                 />
                 <img
                   className="stars"
@@ -45,8 +64,9 @@ class MovieCard extends React.Component {
                   className="str-btn"
                   alt="increase"
                   src="https://cdn-icons-png.flaticon.com/128/2997/2997933.png"
+                  onClick={this.increaseStars.bind(this)}
                 />
-                <span className="starCount">0</span>
+                <span className="starCount">{this.state.stars}</span>
               </div>
 
               {/**Favourite and add to cart buttons */}

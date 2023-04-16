@@ -11,5 +11,8 @@ class App extends React.Component {
     );
   }
 }
-
+// This is the wau to send default props
+// MovieCard.defaultProps = {
+//   name:"avengers"
+// }
 export default App;
