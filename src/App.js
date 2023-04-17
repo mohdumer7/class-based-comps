@@ -4,36 +4,76 @@ import "./index.css";
 class App extends React.Component {
   constructor() {
     super();
+    this.state = {
+      count: 0,
+      card: true,
+    };
   }
 
-  static getDerivedStateProps() {}
+  static getDerivedStateFromProps(props, state) {
+    console.log(
+      "Please Welcome the Component getting the props and state ready"
+    );
+    //NO SIDE EFFECTS
+    //NO SETSTATE
+    return null;
+  }
 
   componentDidMount() {
+    console.log("ssup bois..here i am [MOUNTED]");
     // here is all the fetch calls takes place in the componentdid mount phase.
     //happens only once
+    //NO SIDE EFFECTS
+    //NO SETSTATE
   }
 
   shouldComponentUpdate() {
+    console.log("Should i Update....?");
     //change in state and props trigger rerender?
     //returns a bool value if render must rerun or not
+    return true;
+  }
+  updateme() {
+    this.setState({ count: 1 });
+  }
+
+  unmountCard() {
+    this.setState((prevstate) => ({ card: !prevstate.card }));
   }
 
   render() {
+    console.log("i am Rendering....");
+
     return (
       <>
         <h1>Class Component</h1>
-        <MovieCard />
+        <button onClick={this.updateme.bind(this)}>update me</button>
+        <button onClick={this.unmountCard.bind(this)}>
+          mount/unmount this card
+        </button>
+        {this.state.card ? <MovieCard /> : null}
       </>
     );
   }
 
   getSnapshotBeforeUpdate() {
+    console.log("Hmmm....lemme Get the snapshot of this update");
     //sends a snapshot to component did update
+    return null;
   }
 
   componentDidUpdate() {
+    console.log("Looks like the component just got updated..DAMN!!");
     // runs after component updates
     //happens after each render call
+  }
+
+  componentWillUnmount() {
+    console.log("Thanks For Having me...Thats my Time [UNMOUNTED]");
+    //this is called before the component unmounts to do some cleanup work
+    //NO SIDE EFFECTS
+    //NO SETSTATE
+    return null;
   }
 }
 

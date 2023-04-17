@@ -11,6 +11,31 @@ class MovieCard extends React.Component {
       stars: 0,
     };
   }
+
+  static getDerivedStateFromProps(props, state) {
+    console.log(
+      "----MOVIECARD----Please Welcome the Component getting the props and state ready"
+    );
+    //NO SIDE EFFECTS
+    //NO SETSTATE
+    return null;
+  }
+
+  componentDidMount() {
+    console.log("----MOVIECARD----ssup bois..here i am [MOUNTED]");
+    // here is all the fetch calls takes place in the componentdid mount phase.
+    //happens only once
+    //NO SIDE EFFECTS
+    //NO SETSTATE
+  }
+
+  shouldComponentUpdate() {
+    console.log("----MOVIECARD----Should i Update....?");
+    //change in state and props trigger rerender?
+    //returns a bool value if render must rerun or not
+    return true;
+  }
+
   //this.props is available everytwhere
   increaseStars() {
     this.setState({ stars: this.state.stars + 1 });
@@ -77,6 +102,32 @@ class MovieCard extends React.Component {
         </div>
       </div>
     );
+  }
+
+  getSnapshotBeforeUpdate() {
+    console.log(
+      "----MOVIECARD----Hmmm....lemme Get the snapshot of this update"
+    );
+    //sends a snapshot to component did update
+    return null;
+  }
+
+  componentDidUpdate() {
+    console.log(
+      "----MOVIECARD----Looks like the component just got updated..DAMN!!"
+    );
+    // runs after component updates
+    //happens after each render call
+  }
+
+  componentWillUnmount() {
+    console.log(
+      "----MOVIECARD----Thanks For Having me...Thats my Time [UNMOUNTED]"
+    );
+    //this is called before the component unmounts to do some cleanup work
+    //NO SIDE EFFECTS
+    //NO SETSTATE
+    return null;
   }
 }
 
