@@ -10,6 +10,28 @@ class App extends React.Component {
     };
   }
 
+  // prettier-ignore
+  // eslint-disable
+  /////////////////////////////////////////////////////////////////////////////////////////
+  //[ERROR BOUNDRY]                                                                     ///
+  //these are the error or fall back functions for lifecycle methods                    ///
+  static getDerivedStateFromError(err) {                                                ///
+    //error in props and state                                                          ///
+    //you fallback URL to be safe                                                       ///
+    return err;                                                                         ///
+  } ///
+  ///
+  componentDidCatch(error) {
+    ///
+    // error in component mounts                                                        ///
+    //you fallback URL to be safe                                                       ///
+    return error; ///
+  } ///
+  //This has to be above here so that it can handle athe error boundries for the        ///
+  //children bleow it                                                                   ///                     ///
+  /////////////////////////////////////////////////////////////////////////////////////////
+  // prettier-ignore
+
   static getDerivedStateFromProps(props, state) {
     console.log(
       "Please Welcome the Component getting the props and state ready"
@@ -74,20 +96,6 @@ class App extends React.Component {
     //NO SIDE EFFECTS
     //NO SETSTATE
     return null;
-  }
-
-  //[ERROR BOUNDRY]
-  //these are the error or fall back functions for lifecycle methods
-  static getDerivedStateFromError(err) {
-    //error in props and state
-    //you fallback URL to be safe
-    return err;
-  }
-
-  componentDidCatch(error) {
-    // error in component mounts
-    //you fallback URL to be safe
-    return error;
   }
 }
 
