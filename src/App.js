@@ -27,7 +27,7 @@ class App extends React.Component {
     //NO SETSTATE
   }
 
-  shouldComponentUpdate() {
+  shouldComponentUpdate(nextProp, nextState) {
     console.log("Should i Update....?");
     //change in state and props trigger rerender?
     //returns a bool value if render must rerun or not
@@ -56,13 +56,13 @@ class App extends React.Component {
     );
   }
 
-  getSnapshotBeforeUpdate() {
+  getSnapshotBeforeUpdate(prevProps, prevState) {
     console.log("Hmmm....lemme Get the snapshot of this update");
     //sends a snapshot to component did update
     return null;
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState, snapShot) {
     console.log("Looks like the component just got updated..DAMN!!");
     // runs after component updates
     //happens after each render call
@@ -74,6 +74,20 @@ class App extends React.Component {
     //NO SIDE EFFECTS
     //NO SETSTATE
     return null;
+  }
+
+  //[ERROR BOUNDRY]
+  //these are the error or fall back functions for lifecycle methods
+  static getDerivedStateFromError(err) {
+    //error in props and state
+    //you fallback URL to be safe
+    return err;
+  }
+
+  componentDidCatch(error) {
+    // error in component mounts
+    //you fallback URL to be safe
+    return error;
   }
 }
 
